@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <title>Url Builder</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="css/tailwind.min.css" rel="stylesheet">
+    <link href="js/hr_websocket.js" rel="stylesheet">
+  </head>
+  <body class="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
+    <div class="bg-white p-10 rounded mx-auto min-w-500">
+      <h1 class="text-lg font-semibold text-gray-500">HeartSocket Overlay Url Builder</h1>
+      <p class="mb-3">
+        Use this form to generate a url that you can paste in OBS browser url
+      </p>
+      <label class="block p-1 mb-1">
+        Websocket URI
+        <input type="text" class="p-1 border min-w-full block text-gray-800" id="wsuri" value="ws://192.168.1.88:12121" placeholder="Something like ws://192.168.1.8:12121" />
+      </label>
+      <label class="block p-1 mb-1">
+        Overlay file
+        <select class="p-1 border min-w-full block text-gray-800" id="overlayFile">
+          <option value="monitor.html">Monitor</option>
+          <option value="anime_heart.html">Anime Heart</option>
+          <option value="stress_meter.html">Stress Meter</option>
+          <option value="beatsaber.html">Beat Saber</option>
+        </select>
+      </label>
+      <label class="block p-1 mb-1">
+        Overlay file
+        <input readonly type="text" class="p-1 border min-w-full block" id="result" value="" />
+      </label>
+      <button class="bg-blue-600 rounded px-2 py-1 text-white hover:bg-blue-800" id="copy">Copy to Clipboad</button>
+    </div>
+    <script>
+      var currentPath;
+      var wsuri = window.document.getElementById('wsuri')
+      var overlayFile = window.document.getElementById('overlayFile')
+      var resultEl = window.document.getElementById('result')
+      var copyBtn = window.document.getElementById('copy')
+      window.onload = function () {
+        currentPath = window.location.href.split('/')
+        currentPath.pop()
+        currentPath = currentPath.join('/')
+        result.value = currentPath
+
+        function updateNow () {
+          result.value = currentPath + '/' + overlayFile.value + '?overlay=' + wsuri.value
+        }
+        wsuri.onkeyup = wsuri.onchange = overlayFile.onchange = overlayFile.onclick = updateNow
+        updateNow()
+
+        copyBtn.onclick = function () {
+          result.select()
+          result.setSelectionRange(0, 99999)
+          document.execCommand("copy")
+        }
+      }
+
+    </script>
+  </body>
+</html>
