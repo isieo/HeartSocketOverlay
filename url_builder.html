@@ -44,7 +44,7 @@
         result.value = currentPath
 
         function updateNow () {
-          result.value = currentPath + '/' + overlayFile.value + '?overlay=' + wsuri.value
+          result.value = currentPath + '/' + overlayFile.value + '?socket=' + wsuri.value
         }
         wsuri.onkeyup = wsuri.onchange = overlayFile.onchange = overlayFile.onclick = updateNow
         updateNow()
