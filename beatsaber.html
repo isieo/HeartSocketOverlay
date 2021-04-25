@@ -68,7 +68,7 @@
             heartbg.data = 'images/beatsaber_level2.svg';
           }else if (bpmInt > 100 && currentData != 'beatsaber_level1.svg') {
             heartbg.data = 'images/beatsaber_level1.svg';
-          }else if (currentData!= 'beatsaber_level0.svg') {
+          }else if (bpmInt <= 100 && currentData!= 'beatsaber_level0.svg') {
             heartbg.data = 'images/beatsaber_level0.svg';
           }
           clearTimeout(blanker)

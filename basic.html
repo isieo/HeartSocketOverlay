@@ -1,0 +1,62 @@
+<html>
+  <head>
+    <script src="js/hr_websocket.js"></script>
+  </head>
+  <body style="background-color: transparent;">
+    <div class="container">
+      <div id="bpm">0</div>
+    </div>
+    <style>
+      div.container{
+        width: 200px;
+        height: 200px;
+        position: relative;
+      }
+      #bpm{
+        font-family: 'Courier New', Courier, monospace;
+        font-weight: bolder;
+        font-size: 50px;
+        text-align: center;
+        position: absolute;
+        width: 100;
+        top: 10px
+      }
+      span.numberBox{
+        border: solid darkgrey 1px;
+        background-color: white;
+        color: black;
+        padding: 20px;
+        display:inline-block;
+        width: 100;
+      }
+    </style>
+    <script>
+      var blanker = 0;
+      var bpm = window.document.getElementById('bpm');
+      function getSearchParam(name, url = window.location.href) {
+          name = name.replace(/[\[\]]/g, '\\$&');
+          var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+              results = regex.exec(url);
+          if (!results) return null;
+          if (!results[2]) return '';
+          return decodeURIComponent(results[2].replace(/\+/g, ' '));
+      }
+      window.onload = function () {
+        function connected(event){
+          bpm.innerHTML = '<span class="numberBox">0<br />BPM</span>';
+        }
+        function disconnected(event){
+          bpm.innerHTML = '<span class="numberBox">-<br />BPM</span>';
+        }
+        function getHeartRate(message){
+          bpm.innerHTML = '<span class="numberBox">' + message.data + '<br />BPM</span>';
+          clearTimeout(blanker)
+          blanker = setTimeout(function(){
+            bpm.innerHTML = '0 BPM';
+          }, 5000)
+        }
+        var hr = new HeartSocket(getSearchParam('socket'), connected,disconnected, getHeartRate);
+      }
+    </script>
+  </body>
+</html>
