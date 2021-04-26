@@ -11,7 +11,26 @@ The only free app that allows me to stream my heart rate in obs requires me to s
 You can download it here: APP NOT YET APPROVED BY GOOGLE PLAYSTORE
 
 Buy me a coffee :D
+
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/I2I01QMMF)
+
+
+## Overlays
+
+[![Beatsaber overlay in action](./screenshots/beatsaber-overlay.png)]
+
+Currently there's 3 overlays available to use:
+ * basic.html
+ * beatsaber.html
+ * monitor.html
+
+The overlay html files gets the websocket uri via query string (socket url query param)
+example:
+```
+<path>/basic.html?socket=<Your websock uri>
+```
+
+I have included a url builder to make your life easier (url_builder.html)
 
 
 # Getting Started
@@ -63,6 +82,7 @@ Press OK and now you have your overlay setup!
 Upon connection Heartsocket will start sending the current bpm that it gets from the bluetooth device.
 The websocket data will only contain the heart rate.
 
+
 ## hr_websocket.js
 I have included a very simple javascript class that you can use to establish connection and obtain the heart rate data.
 
@@ -90,3 +110,7 @@ see the technical details part of this readme for more information
 
 * Is it possible to do this without needing to be in the same wifi network?
 Yes you can do this via a VPN (such as ZeroTier or Hamachi) and have both devices in the same vpn network, simply use the vpn ip address as listed as "listening address"
+
+
+# Contributing & adding more overlays
+I do not have any contribution guidelines as for now, just create a pull request, i'll approve it if i don't see any issue with it :3
