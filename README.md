@@ -16,9 +16,6 @@ Buy me a coffee :D
 
 
 ## Overlays
-
-[![Beatsaber overlay in action](./screenshots/beatsaber-overlay.png)]
-
 Currently there's 3 overlays available to use:
  * basic.html
  * beatsaber.html
@@ -97,6 +94,7 @@ Usage:
 
 # FAQ
 * How do i know the size of the overlay?
+
 Unfortunately when i was creating the overlays i did not think of making them responsive, the size is somewhat random because of that.
 Here's the overlay size for each of the overlays:
   - basic.html width: 200, height: 200
@@ -104,13 +102,38 @@ Here's the overlay size for each of the overlays:
   - beatsaber.html width: 960, height: 480
 
 * How do i make my own overlay?
+
 Making your own overlay is relativly simple as long as you have some basic html/javascript knowledge (or shear will)
 Start by looking/modifying basic.html then move on to beatsaber.html they should work as the basis of your overlay.
 see the technical details part of this readme for more information
 
 * Is it possible to do this without needing to be in the same wifi network?
+
 Yes you can do this via a VPN (such as ZeroTier or Hamachi) and have both devices in the same vpn network, simply use the vpn ip address as listed as "listening address"
 
 
 # Contributing & adding more overlays
 I do not have any contribution guidelines as for now, just create a pull request, i'll approve it if i don't see any issue with it :3
+
+
+
+# Copyright (c) 2021 ISIEO
+```
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
