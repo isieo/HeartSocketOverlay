@@ -8,7 +8,7 @@ HeartSocket is an android app that relays/record Bluetooth Ble Heartrate monitor
 Initially build for my own personal use after i couldn't find a "free" app that does this.
 The only free app that allows me to stream my heart rate in obs requires me to send my heart rate to an external service which i am not comfortable with - privacy and latency concern.
 
-You can download it here: APP NOT YET APPROVED BY GOOGLE PLAYSTORE
+You can download it here: https://play.google.com/store/apps/details?id=com.collectskin.heartrate (APP NOT YET APPROVED BY GOOGLE PLAYSTORE)
 
 Buy me a coffee :D
 
