@@ -93,7 +93,7 @@ Usage:
 
 
 # FAQ
-* How do i know the size of the overlay?
+### How do i know the size of the overlay?
 
 Unfortunately when i was creating the overlays i did not think of making them responsive, the size is somewhat random because of that.
 Here's the overlay size for each of the overlays:
@@ -101,13 +101,13 @@ Here's the overlay size for each of the overlays:
   - monitor.html width: 160, height: 110
   - beatsaber.html width: 960, height: 480
 
-* How do i make my own overlay?
+### How do i make my own overlay?
 
 Making your own overlay is relativly simple as long as you have some basic html/javascript knowledge (or shear will)
 Start by looking/modifying basic.html then move on to beatsaber.html they should work as the basis of your overlay.
 see the technical details part of this readme for more information
 
-* Is it possible to do this without needing to be in the same wifi network?
+### Is it possible to do this without needing to be in the same wifi network?
 
 Yes you can do this via a VPN (such as ZeroTier or Hamachi) and have both devices in the same vpn network, simply use the vpn ip address as listed as "listening address"
 
