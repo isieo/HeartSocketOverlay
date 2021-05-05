@@ -8,7 +8,7 @@ HeartSocket is an android app that relays/record Bluetooth Ble Heartrate monitor
 Initially build for my own personal use after i couldn't find a "free" app that does this.
 The only free app that allows me to stream my heart rate in obs requires me to send my heart rate to an external service which i am not comfortable with - privacy and latency concern.
 
-You can download it here: https://play.google.com/store/apps/details?id=com.collectskin.heartrate
+You can download it here: https://play.google.com/store/apps/details?id=com.collectskin.heartrate (APP NOT YET APPROVED BY GOOGLE PLAYSTORE)
 
 Buy me a coffee :D
 
@@ -19,6 +19,7 @@ Buy me a coffee :D
 Currently there's 3 overlays available to use:
  * basic.html
  * beatsaber.html
+ * graph.html
  * monitor.html
 
 The overlay html files gets the websocket uri via query string (socket url query param)
@@ -93,21 +94,22 @@ Usage:
 
 
 # FAQ
-### How do i know the size of the overlay?
+* How do i know the size of the overlay?
 
 Unfortunately when i was creating the overlays i did not think of making them responsive, the size is somewhat random because of that.
 Here's the overlay size for each of the overlays:
   - basic.html width: 200, height: 200
   - monitor.html width: 160, height: 110
   - beatsaber.html width: 960, height: 480
+  - graph.html Responsive
 
-### How do i make my own overlay?
+* How do i make my own overlay?
 
 Making your own overlay is relativly simple as long as you have some basic html/javascript knowledge (or shear will)
 Start by looking/modifying basic.html then move on to beatsaber.html they should work as the basis of your overlay.
 see the technical details part of this readme for more information
 
-### Is it possible to do this without needing to be in the same wifi network?
+* Is it possible to do this without needing to be in the same wifi network?
 
 Yes you can do this via a VPN (such as ZeroTier or Hamachi) and have both devices in the same vpn network, simply use the vpn ip address as listed as "listening address"
 
