@@ -1,0 +1,81 @@
+<html>
+  <head>
+    <script src="js/hr_websocket.js"></script>
+    <script src="js/chart.min.js"></script>
+  </head>
+  <body>
+    <canvas id="graph"></canvas>
+    <style>
+      body{
+        background-color: rgba(0, 0 ,0 , 0.6);
+        color: purple;
+      }
+    </style>
+    <script>
+      var heartRates = [];
+      var chartConfig = {
+        type: 'line',
+        data: {
+          labels: [],
+          datasets: [{borderColor: 'purple', data:[]}]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins:{
+            legend: { display: false}
+          },
+          scales: {
+            y: {
+              min: 0,
+              max: 60,
+              fontColor: 'purple'
+            },
+            x: {
+              display: false
+            },
+          }
+        },
+      };
+      var currentBpm = 0
+      function getSearchParam(name, url = window.location.href) {
+          name = name.replace(/[\[\]]/g, '\\$&');
+          var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+              results = regex.exec(url);
+          if (!results) return null;
+          if (!results[2]) return '';
+          return decodeURIComponent(results[2].replace(/\+/g, ' '));
+      }
+      var graph = new Chart(document.getElementById("graph"), chartConfig)
+      function addBpm(bpm) {
+        if (chartConfig.data.labels.length < 60){
+            chartConfig.data.labels.push(Date.now());
+        }else{
+            chartConfig.data.datasets[0].data.shift()
+        }
+        chartConfig.data.datasets[0].data.push(bpm);
+        if (chartConfig.options.scales.y.max <= bpm){
+          chartConfig.options.scales.y.max = bpm + 10
+        }
+        var chartMin = Math.min(chartConfig.data.datasets[0].data)
+        if (chartConfig.options.scales.y.min < chartMin){
+          chartConfig.options.scales.y.min = chartMin - 10
+        }
+        window.graph.update();
+      }
+      window.onload = function () {
+        function connected(event){
+          currentBpm = 0;
+        }
+        function disconnected(event){
+          currentBpm = 0;
+        }
+        function getHeartRate(message){
+          currentBpm = parseInt(message.data);
+          addBpm(currentBpm)
+        }
+        var hr = new HeartSocket(getSearchParam('socket'), connected, disconnected, getHeartRate);
+      }
+    </script>
+  </body>
+</html>

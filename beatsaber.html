@@ -41,6 +41,8 @@
     </style>
     <script>
       var blanker = 0;
+      var currentImg = 'images/beatsaber_idle.svg';
+      var debounce = 0;
       var heartbg = window.document.getElementById('heartbg');
       var bpm = window.document.getElementById('bpm');
       function getSearchParam(name, url = window.location.href) {
@@ -51,25 +53,33 @@
           if (!results[2]) return '';
           return decodeURIComponent(results[2].replace(/\+/g, ' '));
       }
+      function changeImage(img){
+          if (img != currentImg){
+            clearTimeout(debounce)
+            currentImg = img
+            debounce = setTimeout(function(){
+              heartbg.data = img;
+            },300)
+          }
+        }
       window.onload = function () {
         function connected(event){
-          heartbg.data = 'images/beatsaber_connected.svg';
+          changeImage('images/beatsaber_connected.svg');
           bpm.innerHTML = '';
         }
         function disconnected(event){
-          bpm.innerHTML = '';
-          heartbg.data = 'images/beatsaber_idle.svg';
+          bpm.innerHTML = '0';
+          changeImage('images/beatsaber_idle.svg');
         }
         function getHeartRate(message){
           bpm.innerHTML = '<span class="numberBox">' + message.data + '</span>';
           var bpmInt = parseInt(message.data)
-          var currentData = heartbg.data.split('/').pop()
-          if (bpmInt > 150 && currentData != 'beatsaber_level2.svg') {
-            heartbg.data = 'images/beatsaber_level2.svg';
-          }else if (bpmInt > 100 && currentData != 'beatsaber_level1.svg') {
-            heartbg.data = 'images/beatsaber_level1.svg';
-          }else if (bpmInt <= 100 && currentData!= 'beatsaber_level0.svg') {
-            heartbg.data = 'images/beatsaber_level0.svg';
+          if (bpmInt > 150) {
+            changeImage('images/beatsaber_level2.svg');
+          }else if (bpmInt > 100) {
+            changeImage('images/beatsaber_level1.svg');
+          }else if (bpmInt <= 100) {
+            changeImage('images/beatsaber_level0.svg');
           }
           clearTimeout(blanker)
           blanker = setTimeout(function(){
